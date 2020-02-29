@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/css/home.css">
+        <link rel="icon" type="image/png" href="/images/avatar.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main class="todo">
+
+            <div class="todo__heading todo__bottom--small">
+                <h1><i class="fas fa-list-ul mr-5"></i>To Do App</h1>
+            </div>
+
+            <div class="todo__form " >
+                <form class="form " action="/create-task" id="create-task" method="POST">
+                    <div class="todo__description todo__bottom--small effect effects">
+                        <label for="description" >Description</label>
+                        <input type="text " name="description" placeholder="What do you need to do today?">
+                    </div>
+                    <div class="todo__attributes todo__bottom--small effects">
+                        <div class="todo__category">
+                            <label for="category">Category</label>
+                            <select name="category" id="" class="todo__category--dropdown">
+                                <option value="personal" class="dropdown__option">Personal</option>
+                                <option value="work" class="dropdown__option">Work</option>
+                                <option value="school" class="dropdown__option">School</option>
+                                <option value="others" class="dropdown__option">Others</option>
+
+                            </select>
+                        </div>
+                        <div class="todo__date">
+                            <label for="description" >Due Date</label>
+                            <input type="date" name="date" placeholder="dd/mm/yy" required>
+                        </div>
+                    </div>
+                    <div class="todo__form--buttons effects">
+                        <button class="btn btn-1 mr-small" type="submit" name="action" value="update" form="create-task"><i class="mr-small fas fa-plus"></i>Add Task</button>
+                        <button class="btn btn-2 mr-small" type="submit" name="action" value="update" form="delete-task"><i class="far fa-trash-alt mr-small"></i>Delete Task</button>                       
+                    </div>
+                
+                </form>
+            </div>
+            <div class="todo__list ">
+                <form action="/delete-task" method="post" id="delete-task">
+
+                    <% for(let i of task_list){ %>
+
+                        <div class="todo__task border--above">
+                        
+                            <input type="checkbox" id="<%= i._id %>" class="regular-checkbox" name=name value="<%= i._id %>" /><label for="<%= i._id %>"></label>
+                            <div class="tag">
+                                <div class="tag__description">
+                                    <p class="strike"><%= i.description %></p>
+                                </div>
+                                <div class="label <%= i.category %>">
+                                    <%= i.category %>
+                                </div>
+                                <div class="tag__date">
+                                    <p class="strike"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;<%= i.date %></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    <% } %>
+                    
+                    
+                    
+                    
+                </form>
+
+            </div>
+
+        </main>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
